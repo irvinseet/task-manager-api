@@ -21,21 +21,13 @@ def test_get_tasks(client):
     assert len(response.json()) > 0
 
 def test_update_task(client):
-    # Create a task first
-    create_response = client.post("/tasks", json={"title": "Task to Update", "description": "Update this task"})
-    task_id = create_response.json()["id"]
-    
-    # Update the task
-    update_response = client.put(f"/tasks/{task_id}", json={"title": "Updated Task", "description": "This task has been updated"})
-    assert update_response.status_code == 200
-    assert update_response.json()["title"] == "Updated Task"
+    task_id = client.get("/tasks").json()[0]["id"]
+    response = client.put(f"/tasks/{task_id}", json={"title": "Updated Task"})
+    assert response.status_code == 200
+    assert response.json()["title"] == "Updated Task"
 
 def test_delete_task(client):
-    # Create a task first
-    create_response = client.post("/tasks", json={"title": "Task to Delete", "description": "Delete this task"})
-    task_id = create_response.json()["id"]
-    
-    # Delete the task
-    delete_response = client.delete(f"/tasks/{task_id}")
-    assert delete_response.status_code == 200
-    assert delete_response.json()["detail"] == "Task deleted successfully"
+    task_id = client.get("/tasks").json()[0]["id"]
+    response = client.delete(f"/tasks/{task_id}")
+    assert response.status_code == 200
+    assert response.json()["detail"] == "Task deleted successfully"
