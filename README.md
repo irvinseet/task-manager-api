@@ -1,6 +1,6 @@
 # Task Manager API
 
-This project is a RESTful API built with FastAPI for managing tasks. It includes basic CRUD operations, persistent storage using SQLite, and automated testing with Pytest. The API is designed to be easily extensible, and it includes features such as searching, filtering, and pagination.
+This project is a RESTful API built with FastAPI for managing tasks. It includes basic CRUD operations, persistent storage using SQLite, and automated testing with Pytest. The API is designed to be easily extensible, and it includes features such as searching and filtering.
 
 ## Table of Contents
 
